@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  #Mi aplicación
+  mi-web-spring:
+    image: trabajo-individual
+    build: .
+    ports:
+      - "8080:8080"
+    networks:
+      - red-taller
+    depends_on:
+      - servicio-consumible
+  #El servicio externo
+  servicio-consumible:
+    image: javillour/servicio-tt1:amd64
+    networks:
+      - red-taller
+networks:
+  red-taller:
+    driver: bridge
